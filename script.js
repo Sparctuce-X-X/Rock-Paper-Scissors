@@ -4,65 +4,78 @@ function getComputerChoice() {
  
     switch (choice) {
     case 1 : return "Rock";
-    break ;
     case 2 : return "Paper";
-    break;
     case 3 : return "Scissors";
-    break;
     default : 
     console.log("Error");
  }
 }
 
-function getHumainChoice(choice) {
-
+function getHumanChoice(choice) {
+    if(choice > 3){
+      console.log("error");
+    }
     switch (choice) {
     case 1 : return "Rock";
-    break ;
     case 2 : return "Paper";
-    break;
     case 3 : return "Scissors";
-    break;
     default : 
     console.log("Error");
  }
     
 }
 
-function playRound(HumainChoice,ComputerChoice){
-  if(HumainChoice===ComputerChoice){
+function playRound(HumanChoice,ComputerChoice){
+    console.log("Human choice = ",HumanChoice);
+    console.log("Computer choice = ",ComputerChoice);
 
-    console.log("egality")
+  if(HumanChoice===ComputerChoice){
+
+    return ("egality");
   }
-  else if(HumainChoice=="Rock" && ComputerChoice=="Scissors") {
-    console.log("Human win!")
+  else if(HumanChoice=="Rock" && ComputerChoice=="Scissors") {
+    return ("Human win!");
      
   }
-  else if(HumainChoice=="Paper" && ComputerChoice=="Rock") {
-    console.log("Human win!")
+  else if(HumanChoice=="Paper" && ComputerChoice=="Rock") {
+    return ("Human win!");
   }
-  else if(HumainChoice=="Scissors" && ComputerChoice=="Paper") {
-    console.log("Human win!")
+  else if(HumanChoice=="Scissors" && ComputerChoice=="Paper") {
+    return ("Human win!");
   }else{
-    console.log("Computer Win")
+    return ("Computer Win!");
   }
-
-  console.log("humain score = ",humanScore ,"\n", "computer score = ",computerScore);
 }
 
-function PlayGame(playRound){
-    for(let i = 0 ; i < 5 ; i++)
-    {
-        console.log("Round ",i+1);
-        playRound();
+
+
+function playGame(){
+    let humanScore = 0;
+    let computerScore = 0;
+
+    for(let i=0 ; i < 5 ; i++){
+        console.log('Round ',i+1);
+
+      let choice = parseInt(prompt("What's your choice ?\nRock : 1 \nPaper : 2\nScissors : 3"));
+
+    
+        let result = playRound(getHumanChoice(choice),getComputerChoice());
+
+        if(result==="Human win!"){
+            humanScore++
+        }else if (result==="Computer Win!"){
+            computerScore++
+        }
+    }
+
+    console.log("human score ",humanScore,"\n","computer score",computerScore);
+    
+    if(humanScore > computerScore){
+      console.log('Human wins the party !');
+    }else{
+      console.log("Computer wins the party !");
     }
 }
 
+playGame();
 
-
-let choice = parseInt(prompt("What's your choice ?\nRock : 1 \nPaper : 2\nScissors : 3"));
-
-console.log('Computer choice = ',getComputerChoice());
-console.log('Humain choice = ',getHumainChoice(choice));
-
-PlayGame(playRound);
